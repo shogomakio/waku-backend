@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^1.4.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "ffmpeg": "^0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "glob": "^7.1.6",
+    "glob-promise": "^4.2.2",
+    "mysql": "^2.18.1"
+  },
+  "scripts": {
+    "start": "set NODE_ENV=development node ./index.js",
+    "start:waku": "set NODE_ENV=waku node ./index.js",
+    "server": "nodemon ./bin/www",
+    "client": "set PORT=3000 && npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  }
+}
