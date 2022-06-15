@@ -9,6 +9,7 @@ const app = express(); //express のインスタンス
 require("dotenv").config();
 const port = process.env.PORT; // listenするport番号
 const VideoLogic = require("./logic/video");
+const CategoryLogic = require("./logic/category");
 
 // jsonの受け取り
 app.use(express.json());
@@ -113,6 +114,24 @@ app.get("/category/load", async (req, res) => {
 app.get("/video/category/load", async (req, res) => {
   const result = await VideoLogic.getVideoCategories(req.query.id);
   console.log("video categories loaded");
+  res.send(result);
+});
+
+app.post("/category/create", async (req, res) => {
+  const result = await CategoryLogic.createCategory(req.body.category);
+  console.log("category created", result);
+  res.send(result);
+});
+
+app.put("/category/update", async (req, res) => {
+  const result = await CategoryLogic.updateCategory(req.body.id, req.body.category);
+  console.log("category updated", result);
+  res.send(result);
+});
+
+app.delete("/category/delete", async (req, res) => {
+  const result = await CategoryLogic.deleteCategory(req.body.id);
+  console.log("category deleted", result);
   res.send(result);
 });
 
