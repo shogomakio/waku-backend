@@ -4,10 +4,6 @@ const { path } = require("../utils/config");
 const utilsFile = require("../utils/file");
 const imageUtil = require("../utils/image");
 
-class VideoLogic {}
-
-module.exports.VideoLogic = VideoLogic;
-
 module.exports.createVideosInfo = async () => {
   const directories = await utilsFile.loadDirectory(path.src);
   await utilsFile.cleanGarbageFiles(directories);

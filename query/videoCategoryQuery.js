@@ -1,13 +1,7 @@
 const mysqlCon = require("./base");
 const mysqlConnection = require("../connection/mysql");
 
-const table = {
-  name: "VIDEO_CATEGORY",
-  col: {
-    categoryId: "category_id",
-    videoId: "video_id",
-  },
-};
+const { table } = require("./config");
 
 const createVideoCategory = async (videoId, videoCategories) => {
   let params = [];

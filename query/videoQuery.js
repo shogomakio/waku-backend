@@ -1,31 +1,6 @@
 const mysqlConnection = require("../connection/mysql");
 
-const table = {
-  video: {
-    name: "video",
-    col: {
-      id: "id",
-      code: "code",
-      title: "title",
-      folder: "folder",
-      filename: "filename",
-      full_path: "full_path",
-      thumbnail: "thumbnail",
-      part: "part",
-      year: "year",
-      favorite: "favorite",
-    },
-  },
-  videoCategory: {
-    name: "video_category",
-    col: {
-      id: "id",
-      categoryId: "category_id",
-      videoId: "video_id",
-    },
-  },
-  limit: 20,
-};
+const { table } = require("./config");
 
 module.exports.beginTransaction = function beginTransaction() {
   mysqlConnection.beginTransaction();
@@ -245,7 +220,7 @@ module.exports.getCategories = () => {
 
 module.exports.getVideoCategories = (id) => {
   const sql =
-    "select vc.id as id, vc.category_id as category_id, vc.video_id as video_id, c.category as category_name from video_category as  vc left join category as c on vc.category_id = c.id WHERE vc.video_id = ? ORDER BY CATEGORY_ID";
+    "select vc.id, vc.category_id, vc.video_id, c.category as category_name from video_category as vc left join category as c on vc.category_id = c.id WHERE vc.video_id = ? ORDER BY CATEGORY";
   try {
     const result = mysqlConnection.query(sql, id);
     return result;
